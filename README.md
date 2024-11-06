@@ -1,6 +1,6 @@
 # Todo list
 
-Цей репозиторій містить додаток, який є списком справ. Повний код соступний за посиланням: https://github.com/NadiiaPavliuchenko/todo-list
+Цей репозиторій містить додаток, який є списком справ та використовує JSONPlaceholder API. Повний код доступний за посиланням: https://github.com/NadiiaPavliuchenko/todo-list
 
 ## Як запустити додаток
 
