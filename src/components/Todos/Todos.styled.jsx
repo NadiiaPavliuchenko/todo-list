@@ -28,6 +28,9 @@ export const StyledItem = styled.li`
 `;
 
 export const StyledInput = styled.input`
+  font-family: "Poppins", sans-serif;
+
+  width: 100%;
   width: 210px;
   padding: 5px;
 

@@ -23,6 +23,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
+  font-family: "Poppins", sans-serif;
   padding: 0 15px;
 
   @media screen and (min-width: 786px) {
@@ -35,6 +36,9 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledButton = styled.button`
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+
   height: 50px;
   border: none;
   border-radius: 40px;
