@@ -3,7 +3,7 @@ import {
   getTodos,
   addTodo,
   deleteTodo,
-  //   updateTodo,
+  updateTodo,
   updateTodoStatus,
 } from "./operations";
 
@@ -63,6 +63,18 @@ const todoSlice = createSlice({
         if (index !== -1) {
           state.items[index].completed = action.payload[0].completed;
         }
+      })
+      .addCase(updateTodo.fulfilled, (state, action) => {
+        let index = state.items.findIndex(
+          (elem) => elem.id === action.payload[1]
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload[0];
+        }
+      })
+      .addCase(updateTodo.rejected, (state, action) => {
+        console.error("Update rejected:", action.payload);
+        state.error = action.payload;
       });
   },
 });

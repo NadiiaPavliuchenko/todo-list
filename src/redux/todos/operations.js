@@ -24,8 +24,8 @@ export const addTodo = createAsyncThunk(
         ...newTodo,
         id: Date.now(),
       };
-      const resp = await api.post("todos", createdTodo);
-      return resp.data;
+      await api.post("todos", createdTodo);
+      return createdTodo;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
     }
@@ -38,8 +38,13 @@ export const updateTodo = createAsyncThunk(
   async (updatedTodo, thunkApi) => {
     const { id, userId, title, completed } = updatedTodo;
     try {
-      const resp = await api.put(`todos/${id}`, { userId, title, completed });
-      return resp.json();
+      const resp = await api.put(`todos/${id}`, {
+        id,
+        userId,
+        title,
+        completed,
+      });
+      return [resp.data, id];
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
     }
@@ -52,7 +57,6 @@ export const deleteTodo = createAsyncThunk(
   async (id, thunkApi) => {
     try {
       await api.delete(`todos/${id}`);
-      // console.log(resp.data);
       return id;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
