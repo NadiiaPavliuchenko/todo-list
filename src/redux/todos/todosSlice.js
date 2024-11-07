@@ -2,16 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getTodos,
   addTodo,
-  updateTodo,
-  DeleteTodo,
-  updateTodoStatus,
+  //   updateTodo,
+  //   DeleteTodo,
+  //   updateTodoStatus,
 } from "./operations";
 
 // initial state for todos slice
 const initialTodosState = {
   items: [], // array to store todos
   isLoading: false, // indicates loading state
-  error: false, // error state
+  error: null, // error state
 };
 
 // creating slice for todos
@@ -23,7 +23,7 @@ const todoSlice = createSlice({
       // case for pending state
       .addCase(getTodos.pending, (state) => {
         state.isLoading = true; // setting loading to true
-        state.error = false; // resetting error
+        state.error = null; // resetting error
         state.items = null; // clearing previous items
       })
       // case for fulfilled state

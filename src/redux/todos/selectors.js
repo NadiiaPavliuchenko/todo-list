@@ -1,4 +1,4 @@
-import { createSelector } from "@reduxjs/toolkit";
+// import { createSelector } from "@reduxjs/toolkit";
 
 // selector to access the list of todo items from the state
 export const selectTodos = (state) => state.todos.items;

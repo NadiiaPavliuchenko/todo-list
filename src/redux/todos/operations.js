@@ -6,11 +6,11 @@ export const getTodos = createAsyncThunk(
   "todos/getAll",
   async (_, thunkApi) => {
     try {
-      const todos = await api.get("todos");
-      return todos.json();
+      const resp = await api.get("todos");
+      return resp.data;
     } catch (e) {
       // handling errors by rejecting with an error message
-      thunkApi.rejectWithValue(e.message);
+      return thunkApi.rejectWithValue(e.message);
     }
   }
 );
@@ -21,10 +21,10 @@ export const addTodo = createAsyncThunk(
   async (newTodo, thunkApi) => {
     const { userId, title, completed } = newTodo;
     try {
-      const resp = await api.post("totos", { userId, title, completed });
+      const resp = await api.post("todos", { userId, title, completed });
       return resp.json();
     } catch (e) {
-      thunkApi.rejectWithValue(e.message);
+      return thunkApi.rejectWithValue(e.message);
     }
   }
 );
@@ -38,7 +38,7 @@ export const updateTodo = createAsyncThunk(
       const resp = await api.put(`todos/${id}`, { userId, title, completed });
       return resp.json();
     } catch (e) {
-      thunkApi.rejectWithValue(e.message);
+      return thunkApi.rejectWithValue(e.message);
     }
   }
 );
@@ -51,7 +51,7 @@ export const deleteTodo = createAsyncThunk(
       const resp = await api.delete(`todos/${id}`);
       return resp.json();
     } catch (e) {
-      thunkApi.rejectWithValue(e.message);
+      return thunkApi.rejectWithValue(e.message);
     }
   }
 );
@@ -64,7 +64,7 @@ export const updateTodoStatus = createAsyncThunk(
       const resp = await api.put(`todos/${id}`, body);
       return resp.json();
     } catch (e) {
-      thunkApi.rejectWithValue(e.message);
+      return thunkApi.rejectWithValue(e.message);
     }
   }
 );
