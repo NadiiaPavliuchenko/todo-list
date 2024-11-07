@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api";
 
+// thunk to fetch all todos
 export const getTodos = createAsyncThunk(
   "todos/getAll",
   async (_, thunkApi) => {
@@ -8,11 +9,13 @@ export const getTodos = createAsyncThunk(
       const todos = await api.get("todos");
       return todos.json();
     } catch (e) {
+      // handling errors by rejecting with an error message
       thunkApi.rejectWithValue(e.message);
     }
   }
 );
 
+// thunk to add todo
 export const addTodo = createAsyncThunk(
   "todos/addTodo",
   async (newTodo, thunkApi) => {
@@ -26,6 +29,7 @@ export const addTodo = createAsyncThunk(
   }
 );
 
+// thunk to update todo
 export const updateTodo = createAsyncThunk(
   "todos/updateTodo",
   async (updatedTodo, thunkApi) => {
@@ -39,6 +43,7 @@ export const updateTodo = createAsyncThunk(
   }
 );
 
+// thunk to delete todo
 export const deleteTodo = createAsyncThunk(
   "todos/deleteTodo",
   async (id, thunkApi) => {
@@ -51,6 +56,7 @@ export const deleteTodo = createAsyncThunk(
   }
 );
 
+// thunk to mark todo as completed
 export const updateTodoStatus = createAsyncThunk(
   "todos/updateTodoStatus",
   async ({ id, body }, thunkApi) => {
