@@ -36,13 +36,10 @@ export const addTodo = createAsyncThunk(
 export const updateTodo = createAsyncThunk(
   "todos/updateTodo",
   async (updatedTodo, thunkApi) => {
-    const { id, userId, title, completed } = updatedTodo;
+    const { id, title } = updatedTodo;
     try {
-      const resp = await api.put(`todos/${id}`, {
-        id,
-        userId,
+      const resp = await api.patch(`todos/${id}`, {
         title,
-        completed,
       });
       return [resp.data, id];
     } catch (e) {

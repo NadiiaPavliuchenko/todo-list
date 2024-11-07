@@ -69,12 +69,8 @@ const todoSlice = createSlice({
           (elem) => elem.id === action.payload[1]
         );
         if (index !== -1) {
-          state.items[index] = action.payload[0];
+          state.items[index].title = action.payload[0].title;
         }
-      })
-      .addCase(updateTodo.rejected, (state, action) => {
-        console.error("Update rejected:", action.payload);
-        state.error = action.payload;
       });
   },
 });

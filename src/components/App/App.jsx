@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTodos } from "../../redux/todos/operations";
 import { selectTodos } from "../../redux/todos/selectors";
+import { StyledContainer, StyledTitle } from "./App.styled";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,10 +19,11 @@ function App() {
   }, [dispatch, todos]);
 
   return (
-    <>
+    <StyledContainer>
+      <StyledTitle>To-do List</StyledTitle>
       <TodoForm />
       <Todos />
-    </>
+    </StyledContainer>
   );
 }
 

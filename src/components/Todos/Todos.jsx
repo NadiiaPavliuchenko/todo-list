@@ -10,6 +10,14 @@ import {
   updateTodoStatus,
   updateTodo,
 } from "../../redux/todos/operations";
+import {
+  StyledButton,
+  StyledInput,
+  StyledItem,
+  StyledList,
+} from "./Todos.styled";
+import { FiEdit } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 
 const Todos = () => {
   // use selectors to get todos, loading state, and error from store
@@ -26,6 +34,7 @@ const Todos = () => {
     dispatch(deleteTodo(id));
   };
 
+  // handler function to mark todo as completed
   const handleCheckTodo = (e, id) => {
     const body = {
       id: id,
@@ -34,12 +43,11 @@ const Todos = () => {
     dispatch(updateTodoStatus(body));
   };
 
+  //handler function to updadate todo
   const handleUpdateTodo = (todo) => {
     const newTodo = {
       id: todo.id,
-      userId: todo.userId,
       title: titleRefs.current[todo.id].value,
-      completed: todo.completed,
     };
     dispatch(updateTodo(newTodo));
   };
@@ -48,32 +56,37 @@ const Todos = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <ul>
+    <StyledList>
       {/* if todos are available, display each item in the list */}
       {todos &&
         todos.map((todo) => (
-          <li key={todo.id}>
-            <input
-              type="text"
-              name="title"
-              ref={(ref) => (titleRefs.current[todo.id] = ref)}
-              defaultValue={todo.title}
-            />
+          <StyledItem key={todo.id}>
             <input
               type="checkbox"
               name="copmleted"
               defaultChecked={todo.completed}
               onClick={(e) => handleCheckTodo(e, todo.id)}
             />
-            <button type="button" onClick={() => handleUpdateTodo(todo)}>
-              Update
-            </button>
-            <button type="button" onClick={() => handleDelete(todo.id)}>
-              Delete todo
-            </button>
-          </li>
+            <StyledInput
+              type="text"
+              name="title"
+              ref={(ref) => (titleRefs.current[todo.id] = ref)}
+              defaultValue={todo.title}
+            />
+            <div>
+              <StyledButton
+                type="button"
+                onClick={() => handleUpdateTodo(todo)}
+              >
+                <FiEdit size={20} />
+              </StyledButton>
+              <StyledButton type="button" onClick={() => handleDelete(todo.id)}>
+                <FiX size={20} />
+              </StyledButton>
+            </div>
+          </StyledItem>
         ))}
-    </ul>
+    </StyledList>
   );
 };
 

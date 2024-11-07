@@ -1,5 +1,11 @@
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../redux/todos/operations";
+import {
+  StyledButton,
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+} from "./TodoForm.styled";
 
 // component for adding new todos
 const TodoForm = () => {
@@ -20,10 +26,12 @@ const TodoForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" name="title" placeholder="enter title" />
-      <button type="submit">Add Todo</button>
-    </form>
+    <StyledForm onSubmit={handleSubmit}>
+      <StyledLabel>
+        <StyledInput type="text" name="title" placeholder="Add your task" />
+        <StyledButton type="submit">ADD</StyledButton>
+      </StyledLabel>
+    </StyledForm>
   );
 };
 
