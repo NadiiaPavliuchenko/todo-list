@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   getTodos,
   addTodo,
+  deleteTodo,
   //   updateTodo,
-  //   DeleteTodo,
   //   updateTodoStatus,
 } from "./operations";
 
@@ -43,6 +43,17 @@ const todoSlice = createSlice({
         state.items.push(action.payload);
       })
       .addCase(addTodo.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(deleteTodo.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteTodo.fulfilled, (state, action) => {
+        state.isLoading = false;
+        let index = state.items.findIndex((elem) => elem.id === action.payload);
+        state.items.splice(index, 1);
+      })
+      .addCase(deleteTodo.rejected, (state) => {
         state.isLoading = false;
       });
   },

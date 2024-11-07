@@ -4,8 +4,7 @@ import {
   selectIsLoading,
   selectTodos,
 } from "../../redux/todos/selectors";
-import { getTodos } from "../../redux/todos/operations";
-import { useEffect } from "react";
+import { deleteTodo } from "../../redux/todos/operations";
 
 const Todos = () => {
   // use selectors to get todos, loading state, and error from store
@@ -13,13 +12,13 @@ const Todos = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
-  //Get the dispatch function
+  // get the dispatch function
   const dispatch = useDispatch();
 
-  // use useEffect to load todos when the component is mounted
-  useEffect(() => {
-    dispatch(getTodos());
-  }, [dispatch]);
+  // handler function for deleting todo
+  const handleDelete = (id) => {
+    dispatch(deleteTodo(id));
+  };
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -34,8 +33,11 @@ const Todos = () => {
             <input
               type="checkbox"
               name="copmleted"
-              defaultValue={todo.completed}
+              defaultChecked={todo.completed}
             />
+            <button type="button" onClick={() => handleDelete(todo.id)}>
+              Delete todo
+            </button>
           </li>
         ))}
     </ul>
