@@ -4,7 +4,7 @@ import {
   addTodo,
   deleteTodo,
   //   updateTodo,
-  //   updateTodoStatus,
+  updateTodoStatus,
 } from "./operations";
 
 // initial state for todos slice
@@ -55,6 +55,14 @@ const todoSlice = createSlice({
       })
       .addCase(deleteTodo.rejected, (state) => {
         state.isLoading = false;
+      })
+      .addCase(updateTodoStatus.fulfilled, (state, action) => {
+        let index = state.items.findIndex(
+          (elem) => elem.id === action.payload[1]
+        );
+        if (index !== -1) {
+          state.items[index].completed = action.payload[0].completed;
+        }
       });
   },
 });

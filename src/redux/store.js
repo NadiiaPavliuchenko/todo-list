@@ -15,7 +15,6 @@ import { todosReducer } from "./todos/todosSlice";
 const persistConfig = {
   key: "todos",
   storage,
-  // whitelist: ["todos"],
 };
 
 export const store = configureStore({

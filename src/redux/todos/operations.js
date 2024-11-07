@@ -24,8 +24,8 @@ export const addTodo = createAsyncThunk(
         ...newTodo,
         id: Date.now(),
       };
-      await api.post("todos", createdTodo);
-      return createdTodo;
+      const resp = await api.post("todos", createdTodo);
+      return resp.data;
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
     }
@@ -63,10 +63,10 @@ export const deleteTodo = createAsyncThunk(
 // thunk to mark todo as completed
 export const updateTodoStatus = createAsyncThunk(
   "todos/updateTodoStatus",
-  async ({ id, body }, thunkApi) => {
+  async ({ id, completed }, thunkApi) => {
     try {
-      const resp = await api.put(`todos/${id}`, body);
-      return resp.json();
+      const resp = await api.patch(`todos/${id}`, { completed });
+      return [resp.data, id];
     } catch (e) {
       return thunkApi.rejectWithValue(e.message);
     }

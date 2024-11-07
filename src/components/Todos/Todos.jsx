@@ -4,7 +4,7 @@ import {
   selectIsLoading,
   selectTodos,
 } from "../../redux/todos/selectors";
-import { deleteTodo } from "../../redux/todos/operations";
+import { deleteTodo, updateTodoStatus } from "../../redux/todos/operations";
 
 const Todos = () => {
   // use selectors to get todos, loading state, and error from store
@@ -18,6 +18,14 @@ const Todos = () => {
   // handler function for deleting todo
   const handleDelete = (id) => {
     dispatch(deleteTodo(id));
+  };
+
+  const handleCheckTodo = (e, id) => {
+    const body = {
+      id: id,
+      completed: e.target.checked,
+    };
+    dispatch(updateTodoStatus(body));
   };
 
   if (isLoading) return <p>Loading...</p>;
@@ -34,6 +42,7 @@ const Todos = () => {
               type="checkbox"
               name="copmleted"
               defaultChecked={todo.completed}
+              onClick={(e) => handleCheckTodo(e, todo.id)}
             />
             <button type="button" onClick={() => handleDelete(todo.id)}>
               Delete todo
