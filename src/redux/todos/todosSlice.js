@@ -12,6 +12,7 @@ const initialTodosState = {
   items: [], // array to store todos
   start: 0, // start value for pagination
   limit: 10, // number of todos per page
+  page: 1,
 };
 
 // creating slice for todos
@@ -21,23 +22,33 @@ const todoSlice = createSlice({
   reducers: {
     // action to move to the next page
     nextPage(state) {
-      if (state.start <= state.items.length - state.limit)
+      if (state.start <= state.items.length - state.limit) {
         state.start += state.limit;
+        state.page += 1;
+      }
     },
     // action to returt to previous page
     previousPage(state) {
       if (state.start >= state.limit) {
         state.start -= state.limit;
+        state.page -= 1;
       }
     },
     // action to get to the first page
     firstPage(state) {
       state.start = 0;
+      state.page = 1;
     },
     // action to get to the last page
     lastPage(state) {
       state.start =
         Math.floor((state.items.length - 1) / state.limit) * state.limit;
+      state.page = state.items.length / state.limit;
+    },
+    // action to choose page to display
+    setPage(state, action) {
+      state.start = state.limit * (action.payload - 1);
+      state.page = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -78,6 +89,6 @@ const todoSlice = createSlice({
   },
 });
 
-export const { nextPage, previousPage, firstPage, lastPage } =
+export const { nextPage, previousPage, firstPage, lastPage, setPage } =
   todoSlice.actions;
 export const todosReducer = todoSlice.reducer;

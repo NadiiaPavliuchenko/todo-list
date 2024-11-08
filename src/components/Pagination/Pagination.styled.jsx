@@ -26,4 +26,10 @@ export const StyledButton = styled.button`
   &:not(:last-child) {
     margin-right: 10px;
   }
+
+  &[data-status="true"] {
+    background-color: white;
+    border-color: hotpink;
+    color: hotpink;
+  }
 `;

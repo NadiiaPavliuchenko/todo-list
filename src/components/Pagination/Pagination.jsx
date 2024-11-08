@@ -7,6 +7,7 @@ import {
   selectStart,
   selectLimit,
   selectTodos,
+  selectPage,
 } from "../../redux/todos/selectors";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -15,6 +16,7 @@ import {
   nextPage,
   firstPage,
   lastPage,
+  setPage,
 } from "../../redux/todos/todosSlice";
 
 const Pagination = () => {
@@ -22,6 +24,10 @@ const Pagination = () => {
   const start = useSelector(selectStart);
   const limit = useSelector(selectLimit);
   const todos = useSelector(selectTodos);
+  const page = useSelector(selectPage);
+  const numPages = todos.length / limit;
+
+  const buttons = Array.from({ length: numPages }, (_, index) => index + 1);
 
   // handler for previous page arrow
   const handlePrevious = () => {
@@ -43,6 +49,13 @@ const Pagination = () => {
     dispatch(lastPage());
   };
 
+  // handler to choose page
+  const handleSetPage = (value) => {
+    dispatch(setPage(value));
+  };
+
+  const isCurrentPage = (value) => page === value;
+
   return (
     <PaginationContainer>
       <StyledButton type="button" onClick={() => handleToFirst()}>
@@ -55,6 +68,19 @@ const Pagination = () => {
       >
         <FiChevronLeft />
       </StyledButton>
+      <div>
+        {buttons &&
+          buttons.map((button) => (
+            <StyledButton
+              type="button"
+              key={button}
+              onClick={() => handleSetPage(button)}
+              data-status={isCurrentPage(button)}
+            >
+              {button}
+            </StyledButton>
+          ))}
+      </div>
       <StyledButton
         type="button"
         onClick={() => handleNext()}

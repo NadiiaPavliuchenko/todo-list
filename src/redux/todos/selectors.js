@@ -8,3 +8,6 @@ export const selectStart = (state) => state.todos.start;
 
 // selector to access maximum todos per page
 export const selectLimit = (state) => state.todos.limit;
+
+// selector to access page number
+export const selectPage = (state) => state.todos.page;
