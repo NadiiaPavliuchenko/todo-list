@@ -25,11 +25,10 @@ function App() {
     }
   }, [dispatch, todos]);
 
+  // function to calculate number of todos per page
   const paginateTodos = (todos, start, limit) => {
     const startIndex = start;
-    console.log(startIndex);
     const endIndex = startIndex + limit;
-    console.log(endIndex);
     return todos.slice(startIndex, endIndex);
   };
 

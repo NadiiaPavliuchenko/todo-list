@@ -18,9 +18,12 @@ const persistConfig = {
   storage,
 };
 
+// creating the Redux store with configuration for persistence and reducers
 export const store = configureStore({
   reducer: {
+    // 'todosReducer' is wrapped by 'persistReducer' to enable persistence
     todos: persistReducer(persistConfig, todosReducer),
+    // 'root' reducer is added normally, without persistence
     root: rootReducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -31,4 +34,5 @@ export const store = configureStore({
     }),
 });
 
+// creating the persistor instance
 export const persistor = persistStore(store);

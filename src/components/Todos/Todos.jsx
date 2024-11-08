@@ -20,7 +20,9 @@ const Todos = (visibleTodos) => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
 
+  // get todos per page
   const todos = visibleTodos.visibleTodos;
+
   const titleRefs = useRef({});
 
   // get the dispatch function

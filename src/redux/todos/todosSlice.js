@@ -42,34 +42,35 @@ const todoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getTodos.pending, (state) => {
-        state.items = null;
-      })
       // case for fulfilled state
       .addCase(getTodos.fulfilled, (state, action) => {
         state.items = action.payload; // storing fetched items
       })
       .addCase(addTodo.fulfilled, (state, action) => {
-        state.items.unshift(action.payload);
-        state.totalLength += 1;
+        state.items.unshift(action.payload); // add todo to the beginning of list
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
+        // find index of todo to delete in list
         let index = state.items.findIndex((elem) => elem.id === action.payload);
+        // delete from list
         state.items.splice(index, 1);
-        state.totalLength -= 1;
       })
       .addCase(updateTodoStatus.fulfilled, (state, action) => {
+        // find index todo to update status in list
         let index = state.items.findIndex(
           (elem) => elem.id === action.payload[1]
         );
+        // update status of todo in list if index found
         if (index !== -1) {
           state.items[index].completed = action.payload[0].completed;
         }
       })
       .addCase(updateTodo.fulfilled, (state, action) => {
+        // find index todo to update in list
         let index = state.items.findIndex(
           (elem) => elem.id === action.payload[1]
         );
+        // update status of todo in list if index found
         if (index !== -1) {
           state.items[index].title = action.payload[0].title;
         }

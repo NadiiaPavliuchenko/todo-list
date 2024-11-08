@@ -23,24 +23,24 @@ const Pagination = () => {
   const limit = useSelector(selectLimit);
   const todos = useSelector(selectTodos);
 
+  // handler for previous page arrow
   const handlePrevious = () => {
     dispatch(previousPage());
-    // dispatch(getTodos({ start: start - limit, limit }));
   };
 
+  // handler for next page arrow
   const handleNext = () => {
     dispatch(nextPage());
-    // dispatch(getTodos({ start: start + limit, limit }));
   };
 
+  // handler for go to first page arrow
   const handleToFirst = () => {
     dispatch(firstPage());
-    // dispatch(getTodos({ start: 0, limit }));
   };
 
+  // handler for go to last page arrow
   const handleToLast = () => {
     dispatch(lastPage());
-    // dispatch(getTodos({ start: length - limit, limit }));
   };
 
   return (
