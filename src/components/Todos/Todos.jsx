@@ -1,10 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useRef } from "react";
-import {
-  selectError,
-  selectIsLoading,
-  selectTodos,
-} from "../../redux/todos/selectors";
+import { selectError, selectIsLoading } from "../../redux/root/selectors";
 import {
   deleteTodo,
   updateTodoStatus,
@@ -19,11 +15,12 @@ import {
 import { FiEdit } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
 
-const Todos = () => {
-  // use selectors to get todos, loading state, and error from store
-  const todos = useSelector(selectTodos);
+const Todos = (visibleTodos) => {
+  // use selectors to get loading state, and error from store
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
+
+  const todos = visibleTodos.visibleTodos;
   const titleRefs = useRef({});
 
   // get the dispatch function
