@@ -40,6 +40,8 @@ export const GlobalStyles = createGlobalStyle`
             #46eefa,
             #5ffbf1
         );
+        background-size: cover;
+        background-attachment: fixed;
     }
     ul,
     ol {
