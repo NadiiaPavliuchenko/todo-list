@@ -43,7 +43,7 @@ const todoSlice = createSlice({
     lastPage(state) {
       state.start =
         Math.floor((state.items.length - 1) / state.limit) * state.limit;
-      state.page = state.items.length / state.limit;
+      state.page = Math.ceil(state.items.length / state.limit);
     },
     // action to choose page to display
     setPage(state, action) {

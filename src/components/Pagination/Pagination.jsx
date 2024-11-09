@@ -25,9 +25,18 @@ const Pagination = () => {
   const limit = useSelector(selectLimit);
   const todos = useSelector(selectTodos);
   const page = useSelector(selectPage);
-  const numPages = todos.length / limit;
 
-  const buttons = Array.from({ length: numPages }, (_, index) => index + 1);
+  // calculate total number of pages according to list length
+  const numPages = Math.ceil(todos.length / limit);
+
+  const startPage = Math.max(page - 1, 1);
+  const endPage = Math.min(startPage + 3, numPages);
+
+  // create array of numbers for pages buttons
+  const buttons = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, index) => startPage + index
+  );
 
   // handler for previous page arrow
   const handlePrevious = () => {
@@ -54,8 +63,6 @@ const Pagination = () => {
     dispatch(setPage(value));
   };
 
-  const isCurrentPage = (value) => page === value;
-
   return (
     <PaginationContainer>
       <StyledButton type="button" onClick={() => handleToFirst()}>
@@ -68,19 +75,17 @@ const Pagination = () => {
       >
         <FiChevronLeft />
       </StyledButton>
-      <div>
-        {buttons &&
-          buttons.map((button) => (
-            <StyledButton
-              type="button"
-              key={button}
-              onClick={() => handleSetPage(button)}
-              data-status={isCurrentPage(button)}
-            >
-              {button}
-            </StyledButton>
-          ))}
-      </div>
+      {buttons &&
+        buttons.map((button) => (
+          <StyledButton
+            type="button"
+            key={button}
+            onClick={() => handleSetPage(button)}
+            data-status={page === button}
+          >
+            {button}
+          </StyledButton>
+        ))}
       <StyledButton
         type="button"
         onClick={() => handleNext()}
