@@ -29,6 +29,7 @@ const Pagination = () => {
   // calculate total number of pages according to list length
   const numPages = Math.ceil(todos.length / limit);
 
+  // calculate strat and end pages to dynamically change number of buttons
   const startPage = Math.max(page - 1, 1);
   const endPage = Math.min(startPage + 3, numPages);
 

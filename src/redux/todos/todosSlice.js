@@ -12,7 +12,7 @@ const initialTodosState = {
   items: [], // array to store todos
   start: 0, // start value for pagination
   limit: 10, // number of todos per page
-  page: 1,
+  page: 1, // current page number
 };
 
 // creating slice for todos
