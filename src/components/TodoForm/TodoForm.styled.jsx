@@ -23,7 +23,7 @@ export const StyledLabel = styled.label`
 `;
 
 export const StyledInput = styled.input`
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins-Reguar", sans-serif;
   padding: 0 15px;
 
   @media screen and (min-width: 786px) {
@@ -36,8 +36,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledButton = styled.button`
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
+  font-family: "Poppins-Regular", sans-serif;
 
   height: 50px;
   border: none;
@@ -47,5 +46,15 @@ export const StyledButton = styled.button`
 
   @media screen and (min-width: 768px) {
     width: 150px;
+  }
+
+  transition: background-color, ease-in-out, 200ms;
+
+  &:hover,
+  :focus {
+    background-color: #f00e7f;
+  }
+  &:active {
+    background-color: #f00e7f;
   }
 `;

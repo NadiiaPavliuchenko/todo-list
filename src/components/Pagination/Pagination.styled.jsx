@@ -1,11 +1,17 @@
 import styled from "styled-components";
 
-export const PaginationContainer = styled.div``;
+export const PaginationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const StyledButton = styled.button`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
+  font-family: "Poppins-Regular", sans-serif;
 
   width: 30px;
   height: 30px;
@@ -19,6 +25,10 @@ export const StyledButton = styled.button`
 
   &:hover,
   :focus {
+    color: hotpink;
+    border-color: hotpink;
+  }
+  &:active {
     color: hotpink;
     border-color: hotpink;
   }
