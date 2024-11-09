@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/todo-list/static/js/main.0464c710.js",
+    "main.js": "/todo-list/static/js/main.e77ba587.js",
     "static/media/Poppins-Regular.ttf": "/todo-list/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Bold.ttf": "/todo-list/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "index.html": "/todo-list/index.html",
-    "main.0464c710.js.map": "/todo-list/static/js/main.0464c710.js.map"
+    "main.e77ba587.js.map": "/todo-list/static/js/main.e77ba587.js.map"
   },
   "entrypoints": [
-    "static/js/main.0464c710.js"
+    "static/js/main.e77ba587.js"
   ]
 }
